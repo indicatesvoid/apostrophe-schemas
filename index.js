@@ -403,7 +403,9 @@ function ApostropheSchemas(options, callback) {
       // has been offered
       var _password = self._apos.sanitizeString(data.password);
       if (_password.length) {
-        snippet[name] = self._apos.hashPassword(data.password);
+        self._apos.hashPassword(data.password, function(hash) {
+          snippet[name] = hash;
+        });
       }
       return setImmediate(callback);
     },
